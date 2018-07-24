@@ -1,0 +1,38 @@
+/*#calendar {
+	width: 30%;
+	margin: auto;
+	padding: auto;     почему то не работает
+}*/
+
+#calendar .fc-day{
+	transition: all .1s;
+}
+
+#calendar .fc-day:hover{
+	background: #ccc;
+
+}
+
+#notifies {
+    position:fixed;
+    max-width: 30%;
+    height:auto;
+    top:0;
+    right:0;
+    z-index: 9999;
+}		
+
+
+
+/*стили для двух вариантов модальных окон
+
+https://toster.ru/q/1538
+
+*/
+/*.ownTrue {
+
+}
+
+.ownFalse{
+
+}*/

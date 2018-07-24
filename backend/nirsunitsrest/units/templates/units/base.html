@@ -1,0 +1,53 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <title>Запись на установки</title>
+
+<style type="text/css">
+
+  .sub-header {
+  text-align: center;
+  }
+
+  {% block style %}
+  {% endblock %}  
+
+</style>
+
+{% include 'units/base-css.html' %}
+
+  </head>
+
+  <body>
+
+{% include 'units/navbar.html' %}
+
+{% block header %}
+{% endblock %}
+
+{% block chart %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% include 'units/base-js.html' %}
+
+{% block script %}
+{% endblock %}
+
+  <footer class="footer">
+    <div class="container">
+      <p class="text-center text-muted">Пока-что не работает</p>
+    </div>
+  </footer>
+
+  </body>
+</html>

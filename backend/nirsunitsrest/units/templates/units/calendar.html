@@ -1,0 +1,202 @@
+{% extends "units/base.html" %}
+
+{% block content %}
+
+<h5 style="margin: 5px">Установка: {{ unit }}</h5>
+
+  <!-- храним id установки, чтобы вытащить javascript'ом и записать в переменную -->
+<input type="hidden" id="unitId" name="variable" value="{{ unit.id }}">
+<input type="hidden" id="unitName" name="variable" value="{{ unit.unit_name }}">
+<input type="hidden" id="loginedUser" name="variable" value="{{ request.user.first_name }} {{ request.user.last_name }}">
+
+<div id="notifies"></div>
+
+<div class="container">
+    <div id='calendar' style="width: 100%"></div>
+</div>
+
+<!-- NEW REALISATION MAIN FORM -->
+<div class="modal fade" id="mainForm" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Запись на <span name="pick-start-date"></span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form name="mainForm" novalidate>
+
+            <div class="form-group">
+                <label>Объект испытания</label>
+                <input type="text" name="subject" 
+                class="form-control" 
+                placeholder="Укажите объект"
+                required>
+                
+                <div class="invalid-feedback">
+                  Поле не заполнено
+                </div>
+            </div>
+
+              <!-- new time pickers -->
+              <!-- new time pickers -->
+              <div class="form-group">
+                
+                <div class="form-group row">
+                  <p class="col-sm-2 form-control-label">Начало</p>
+                  <div class="col-sm-10">
+                    <div class="input-group date" id="timepickerStart" data-target-input="nearest">
+                      <input type="text" name="timeStart" class="form-control datetimepicker-input" data-target="#timepickerStart"/>
+                      <div class="input-group-append" data-target="#timepickerStart" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="far fa-clock"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <p class="col-sm-2 form-control-label">Конец</p>
+                  <div class="col-sm-10">
+                    <div class="input-group date" id="timepickerEnd" data-target-input="nearest">
+                      <input type="text" name="timeEnd" class="form-control datetimepicker-input" data-target="#timepickerEnd"/>
+                      <div class="input-group-append" data-target="#timepickerEnd" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="far fa-clock"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div name="time-sequence-error" class="invalid-feedback">
+                  Начало должно быть раньше конца
+                </div>
+             </div>
+
+
+
+              <!-- new time pickers -->
+              <!-- new time pickers -->
+
+              <!-- <div class="form-group row">
+                <p class="col-sm-2 form-control-label">Начало</p>
+                <div class="col-sm-10">
+                  <input type="text" name="timeStart" 
+                  class="form-control timepicker"
+                  placeholder="Время начала">
+                  
+                  <div class="invalid-feedback">
+                    Поле не заполнено
+                  </div>
+                </div>
+              </div> -->
+      
+              <!-- <div class="form-group row">
+                <label class="col-sm-2 form-control-label">Конец</label>
+                <div class="col-sm-10">
+                  <input type="text" name="timeEnd"
+                  class="form-control timepicker"
+                  placeholder="Время окончания">
+    
+                  <div class="invalid-feedback">
+                    Поле не заполнено
+                  </div>
+                </div>
+              </div> -->
+
+            <div class="form-group">
+              <label>Дата окончания</label>
+              <div class="input-group date" id="datepickerEnd" data-target-input="nearest">
+                <input type="text" name="dateEnd" class="form-control datetimepicker-input" data-target="#datepickerEnd"/>
+                <div class="input-group-append" data-target="#datepickerEnd" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="far fa-calendar"></i></div>
+                </div>
+              </div>
+              
+              <div class="invalid-feedback">
+                Поле не заполнено
+              </div>
+            </div>
+
+
+            <div class="dropdown-divider"></div>
+    
+            <select class="custom-select" name="tester">
+              <option value="-1" selected>Выберете испытателя</option>
+                {% for tester in testers %}
+                <option value="{{tester.id}}">{{ tester }}</option>
+                {% endfor %}
+            </select>
+
+            <div class="dropdown-divider"></div>
+
+            <select class="custom-select" name="distance">
+              <option value="-1" selected>Выберете расстояние</option>
+                <option value="Малое">Малое</option>
+                <option value="Среднее">Среднее</option>
+                <option value="Большое">Большое</option>    
+            </select>
+    
+            <div class="dropdown-divider"></div>
+    
+            <div class="form-group">
+              <label>Примечание</label>
+              <textarea class="form-control" name="noteText"
+              rows="3" placeholder="Примечание"></textarea>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="modal-footer justify-content-end">
+          <button name="btnCancel" type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Отмена</button>
+          
+          <div class="event-form">
+            <button name="btnDelete" type="button" class="btn btn-danger">Удалить</button>
+            <button name="btnUpdate" type="button" class="btn btn-primary">Изменить</button>
+            <button name="btnApplyUpdates" type="button" class="btn btn-success">Применить</button>
+          </div>
+
+          <div class="blank-form">
+            <button name="btnCreate" type="button" class="btn btn-success">Записаться</button>
+          </div>
+
+        </div>
+
+        <div class="modal-footer justify-content-start event-owner">
+          <p>Владелец записи</p>
+        </div>
+
+      </div>
+    </div>
+</div>
+<!-- NEW REALISATION MAIN FORM -->
+
+<!-- confirm delete -->
+<div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmDeleteInfoTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span><b>Вы уверены что хотите удалить запись?</b></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger btn-ok" onclick="deleteEvent(event);">Удалить запись</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- alerts -->
+<div class="alert alert-danger" id="dateError" style="display:none; z-index:9999;">
+</div>
+
+{% endblock %}

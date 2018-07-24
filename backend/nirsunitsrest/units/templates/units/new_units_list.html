@@ -1,0 +1,79 @@
+{% extends "units/base.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+<div class="container" style="margin-top: 10px">
+	<div class="row">
+		<div class="col-4 ">
+			<div class="card" style="width: 18rem;">
+			  <img class="card-img-top" src="{% static 'images/panorama137.png'%}" alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title">Панорама-Cs137</h5>
+			    <p class="card-text">Установка лабораторная опытная «Гамма-Панорама МИФИ» с изотопным источником Cs-137.</p>
+			  </div>
+			  <div class="dropdown-divider"></div>
+			  <div class="card-body">
+			    <a href="{% url 'units:schedule_calendar' 'Панорама-Cs137' %}" class="card-link">Записаться на установку</a>
+			  </div>
+			</div>
+		</div>
+		<div class="col-4 order-3 ml-auto">
+			<div class="card" style="width: 18rem;">
+			  <img class="card-img-top" src="{% static 'images/accelerator.png'%}" alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title">Ускоритель</h5>
+			    <p class="card-text">Импульсные ускорители электронов «АРСА», работающие в режиме генерации электронного или тормозного излучения.</p>
+			  </div>
+			  <div class="dropdown-divider"></div>
+			  <div class="card-body">
+			    <a href="{% url 'units:schedule_calendar' 'Ускоритель' %}" class="card-link">Записаться на установку</a>
+			  </div>
+			</div>
+		</div>
+		<div class="col-4 order-2">
+			<div class="card" style="width: 18rem;">
+			  <img class="card-img-top" src="{% static 'images/panorama60.png'%}" alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title">Панорама-Co60</h5>
+			    <p class="card-text">Установка лабораторная опытная «Гамма-Панорама МИФИ» с изотопными источником Со-60 </p>
+			  </div>
+			  <div class="dropdown-divider"></div>
+			  <div class="card-body">
+			    <a href="{% url 'units:schedule_calendar' 'Панорама-Co60' %}" class="card-link">Записаться на установку</a>
+			  </div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-top: 10px">
+		<div class="col-4 order-1">
+			<div class="card" style="width: 18rem;">
+			  <img class="card-img-top" src="{% static 'images/arsa.png'%}" alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title">АРСА-1</h5>
+			    <p class="card-text">Импульсные ускорители электронов «АРСА», работающие в режиме генерации электронного или тормозного излучения.</p>
+			  </div>
+			  <div class="dropdown-divider"></div>
+			  <div class="card-body">
+			    <a href="{% url 'units:schedule_calendar' 'АРСА-1' %}" class="card-link">Записаться на установку</a>
+			  </div>
+			</div>
+		</div>
+		<div class="col-4 order-3">
+			<div class="card" style="width: 18rem;">
+			  <img class="card-img-top" src="{% static 'images/arsa2.png'%}" alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title">АРСА-2</h5>
+			    <p class="card-text">Импульсные ускорители электронов «АРСА», работающие в режиме генерации электронного или тормозного излучения.</p>
+			  </div>
+			  <div class="dropdown-divider"></div>
+			  <div class="card-body">
+			    <a href="{% url 'units:schedule_calendar' 'АРСА-2' %}" class="card-link">Записаться на установку</a>
+			  </div>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a href="{% url 'units:units_list' %}" class="navbar-brand">
+      <img src="https://s3.amazonaws.com/iconbros/icons/icon_pngs/000/000/690/original/pirate-c.png?1512931139" alt="logo" width="40" height="40">
+    </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'units:units_list' %}">Главная <span class="sr-only">(current)</span></a>
+      </li>
+<!--       <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li> -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Установки
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'units:units_list' %}">Все установки</a>
+          <div class="dropdown-divider"></div>
+          <!-- захардкодено! -->
+          <a class="dropdown-item" href="{% url 'units:schedule_calendar' 'АРСА-1' %}">АРСА-1</a>
+          <a class="dropdown-item" href="{% url 'units:schedule_calendar' 'АРСА-2' %}">АРСА-2</a>
+          <a class="dropdown-item" href="{% url 'units:schedule_calendar' 'Панорама-Cs137' %}">Панорама-Cs137</a>
+          <a class="dropdown-item" href="{% url 'units:schedule_calendar' 'Панорама-Co60' %}">Панорама-Co60</a>
+          <a class="dropdown-item" href="{% url 'units:schedule_calendar' 'Ускоритель' %}">Ускоритель</a>
+          <!-- Взять из sidebar лист этих установок -->
+
+        </div>
+      </li>
+      <li class="nav-item">
+        <span class="navbar-text text-white">
+           <!--Сегодня -->{% now "l, d F Y" %} 
+        </span>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <span class="navbar-text text-gray">  Добро пожаловать,</span>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ request.user.first_name }} {{ request.user.last_name }}!
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Личный кабинет</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Выйти</a>
+        </div>
+      </li>
+    </ul>
+    </div>
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
